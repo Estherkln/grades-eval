@@ -133,3 +133,18 @@ oldest |>
   kable()
 ```
 
+## Question 10
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(tidyr)
+
+nb_grades <- grades |>
+  drop_na(grade) |>
+  nrow()
+```
+
+
+The data set contains `r nb_grades` grades.
+
+## Question 11
