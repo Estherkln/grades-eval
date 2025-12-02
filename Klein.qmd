@@ -1,0 +1,17 @@
+---
+title: "Klein"
+author: "Esther KLEIN"
+format: html
+editor: visual
+---
+
+## Question 1
+
+```{r}
+library(readr)
+library(here)
+courses <- read_csv(here("courses.csv"))
+```
+
+## Question 2 
+
