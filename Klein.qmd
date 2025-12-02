@@ -355,3 +355,23 @@ best_data |>
     title = paste("Group", best_group)
   )
 ```
+
+## Question 23
+
+```{r message=FALSE, warning=FALSE}
+final_grades <- avg_wide |>
+  rowwise() |>
+  mutate(final_grade = mean(c_across(-c(id, group)), na.rm = TRUE)) |>
+  ungroup()
+
+
+final_with_sex <- final_grades |>
+  inner_join(select(students, id, sex), by = "id") |>
+  select(id, group, sex, final_grade) |>
+  arrange(desc(final_grade))
+
+
+final_with_sex |>
+  slice_head(n = 5) |>
+  kable()
+```
