@@ -178,3 +178,30 @@ grades_trimester |>
   geom_boxplot()
 ```
 
+## Question 13
+```{r message=FALSE, warning=FALSE}
+
+grades_per_student <- grades |>
+  filter(!is.na(grade)) |>
+  group_by(id) |>
+  summarise(nb_grades = n()) |>
+  inner_join(students, by = "id") |>
+  select(id, group, sex, nb_grades)
+
+
+grades_per_student |>
+  slice_head(n = 5) |>
+  kable()
+
+summary_table <- grades_per_student |>
+  summarise(
+    min = min(nb_grades),
+    max = max(nb_grades),
+    mean = mean(nb_grades),
+    median = median(nb_grades)
+  )
+```
+
+Here are the summary statistics for the number of grades per student:
+
+`r knitr::kable(summary_table)`
