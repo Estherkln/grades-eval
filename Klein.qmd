@@ -148,3 +148,21 @@ nb_grades <- grades |>
 The data set contains `r nb_grades` grades.
 
 ## Question 11
+
+```{r message=FALSE, warning=FALSE}
+cna_id <- courses |>
+  filter(course == "Celestial Navigation and Astronomy") |>
+  pull(course_id)
+
+avg_cna <- students |>
+  inner_join(grades, by = "id") |>
+  filter(course_id == cna_id) |>
+  group_by(group) |>
+  summarise(mean_grade = mean(grade, na.rm = TRUE))
+
+avg_cna |>
+  ggplot(aes(x = group, y = mean_grade)) +
+  geom_col()
+```
+
+
