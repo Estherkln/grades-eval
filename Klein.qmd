@@ -238,3 +238,18 @@ emc_per_student |>
   slice_head(n = 5) |>
   kable()
 ```
+
+## Question 16
+
+```{r message=FALSE, warning=FALSE}
+emc_distribution <- emc_per_student |>
+  count(nb_grades)
+
+emc_distribution |>
+  ggplot(aes(x = nb_grades, y = n)) +
+  geom_col() +
+labs(
+    x = "Number of grades in Elemental Mastery and Control",
+    y = "Number of students"
+  )
+```
