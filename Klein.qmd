@@ -429,6 +429,12 @@ pass_table |>
   slice_head(n = 5) |>
   knitr::kable()
 ```
+## Question 27
 
+```{r message=FALSE, warning=FALSE}
+n_fail_high_grade <- pass_table |>
+  filter(!pass, final_grade >= 10) |>
+  nrow()
 ```
 
+The number of students who do not pass and yet have a final grade larger or equal to 10 is `r n_fail_high_grade`.
