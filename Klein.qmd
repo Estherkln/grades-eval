@@ -261,3 +261,45 @@ emc_per_student |>
   geom_boxplot() + 
   labs(x = "Group", y = "Number of grades in EMC")
 ```
+## Question 18 
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+
+emc_with_sex <- emc_per_student |>
+  inner_join(select(students, id, sex), by = "id")
+
+emc_with_sex |>
+  ggplot(aes(x = group, y = nb_grades, color = sex)) +
+  geom_boxplot()
+```
+
+
+## Question 19 
+```{r message=FALSE, warning=FALSE}
+avg_per_course <- grades |>
+  filter(!is.na(grade)) |>
+  group_by(id, course_id) |>
+  summarise(avg_grade = mean(grade), .groups = "drop")
+
+avg_with_group <- avg_per_course |>
+  inner_join(select(students, id, group), by = "id")
+
+avg_named <- avg_with_group |>
+  inner_join(select(courses, course_id, course), by = "course_id")
+
+avg_wide <- avg_named |>
+  select(id, group, course, avg_grade) |>
+  pivot_wider(
+    names_from = course,
+    values_from = avg_grade
+  )
+
+avg_wide |>
+  select(id, group, 3:4) |>
+  slice_head(n = 5) |>
+  kable()
+
+```
+
