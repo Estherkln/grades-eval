@@ -94,3 +94,14 @@ students |>
 ```
 
 
+## Question 7
+
+```{r message=FALSE, warning=FALSE}
+library(lubridate)
+
+students |>
+  mutate(age = time_length(today() - birth_date, unit = "year")) |>
+  ggplot(aes(x = age)) +
+  geom_histogram()
+```
+
