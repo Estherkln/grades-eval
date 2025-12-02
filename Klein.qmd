@@ -13,5 +13,22 @@ library(here)
 courses <- read_csv(here("courses.csv"))
 ```
 
-## Question 2 
+## Question 2
+
+
+```{r message=FALSE}
+library(dplyr)
+library(knitr)
+
+courses |> 
+  rename(
+    course_name = course,
+    identifier = course_id,
+    number_of_exams = nb_grades
+  ) |> 
+  arrange(course_name) |> 
+  kable()
+```
+
+
 
