@@ -331,3 +331,27 @@ correlation_by_group <- avg_wide |>
 
 correlation_by_group
 ```
+
+
+
+## Question 22
+```{r message=FALSE, warning=FALSE}
+best_group <- correlation_by_group |>
+  mutate(abs_corr = abs(corr)) |>
+  arrange(desc(abs_corr)) |>
+  slice(1) |>
+  pull(group)
+
+best_data <- avg_wide |>
+  filter(group == best_group)
+
+best_data |>
+  ggplot(aes(x = `Necromancy and Spirit Summoning`,
+             y = `Swordsmanship and Martial Arts`)) +
+  geom_point() +
+  labs(
+    x = "Average grade in Necromancy and Spirit Summoning",
+    y = "Average grade in Swordsmanship and Martial Arts",
+    title = paste("Group", best_group)
+  )
+```
