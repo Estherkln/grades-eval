@@ -5,6 +5,8 @@ format: html
 editor: visual
 ---
 
+### https://github.com/Estherkln/grades-eval.git
+
 ## Question 1
 
 ```{r message=FALSE, warning=FALSE}
@@ -12,8 +14,6 @@ library(readr)
 library(here)
 courses <- read_csv(here("courses.csv"), show_col_types = FALSE)
 ```
-
-
 
 ## Question 2
 
@@ -31,7 +31,7 @@ courses |>
   kable()
 ```
 
-## Question 3 
+## Question 3
 
 ```{r message=FALSE, warning=FALSE}
 
@@ -49,12 +49,9 @@ students |>
   kable()
 ```
 
-The `birth_date` column of the students data frame is of class `r birth_date_class`.
-The `sex` column of the students data frame is of class `r sex_class`.
+The `birth_date` column of the students data frame is of class `r birth_date_class`. The `sex` column of the students data frame is of class `r sex_class`.
 
-
-## Question 4 
-
+## Question 4
 
 ```{r message=FALSE, warning=FALSE}
 library(readr)
@@ -69,7 +66,6 @@ grades <- read_delim(
 
 ```
 
-
 ## Question 5
 
 ```{r message=FALSE, warning=FALSE}
@@ -83,7 +79,9 @@ students |>
   labs(x = "Group", y = "Number of students")
 ```
 
-## Question 6 
+All groups countain roughly between 50 and 70 students. There is no extremely small or extremely large group.
+
+## Question 6
 
 ```{r message=FALSE, warning=FALSE}
 
@@ -93,6 +91,7 @@ students |>
   geom_col()
 ```
 
+It seems that in each bar, the red color is larger. So we can think that in each group there are more women than men. The gender distribution seems to be stable across the 15 groups.
 
 ## Question 7
 
@@ -106,7 +105,9 @@ students |>
   geom_histogram()
 ```
 
-## Question 8 
+This histrogram shows the distribution of ages. Most students are between 20 and 24 years old.
+
+## Question 8
 
 ```{r message=FALSE, warning=FALSE}
 median_age <- students |>
@@ -117,8 +118,9 @@ median_age <- students |>
 median_age |>
   kable()
 ```
+All groups have a median age of 22.
 
-## Question 9 
+## Question 9
 
 ```{r message=FALSE, warning=FALSE}
 oldest <- students |>
@@ -144,7 +146,6 @@ nb_grades <- grades |>
   nrow()
 ```
 
-
 The data set contains `r nb_grades` grades.
 
 ## Question 11
@@ -164,7 +165,10 @@ avg_cna |>
   ggplot(aes(x = group, y = mean_grade)) +
   geom_col()
 ```
-##Question 12
+
+The graph shows the average grade in the course "Celestial Navigation and Astronomy" for each group. All groups seem to have similar performance. Group 10 has the highest average.
+
+## Question 12
 
 ```{r message=FALSE, warning=FALSE}
 library(dplyr)
@@ -178,7 +182,12 @@ grades_trimester |>
   geom_boxplot()
 ```
 
+Trimester 1 and 3 show similar distribution. Trimester 2 stands out more with slightly better grades. 
+
+
+
 ## Question 13
+
 ```{r message=FALSE, warning=FALSE}
 
 grades_per_student <- grades |>
@@ -216,10 +225,10 @@ grades_per_student |>
   geom_boxplot()
 ```
 
-The distribution of grades seems to be the same for female and male students. 
-
+The distribution of grades seems to be the same for female and male students.
 
 ## Question 15
+
 ```{r message=FALSE, warning=FALSE}
 
 emc_id <- courses |>
@@ -255,7 +264,10 @@ labs(
   )
 ```
 
+Almost all students completed all 10 assessments, with only a small number missing some (they did only 8 or 9 assessments).
+
 ## Question 17
+
 ```{r message=FALSE, warning=FALSE}
 emc_per_student |>
   ggplot(aes(x = group, y = nb_grades)) +
@@ -263,9 +275,11 @@ emc_per_student |>
   labs(x = "Group", y = "Number of grades in EMC")
 ```
 
+The boxplot shows a flat line at 10 for every group.
+This indicates that nearly all students completed all 10 evaluations in this course.
 
 
-## Question 18 
+## Question 18
 
 ```{r message=FALSE, warning=FALSE}
 library(dplyr)
@@ -279,8 +293,8 @@ emc_with_sex |>
   geom_boxplot()
 ```
 
+## Question 19
 
-## Question 19 
 ```{r message=FALSE, warning=FALSE}
 avg_per_course <- grades |>
   filter(!is.na(grade)) |>
@@ -306,7 +320,9 @@ avg_wide |>
   kable()
 
 ```
+
 ## Question 20
+
 ```{r message=FALSE, warning=FALSE}
 
 avg_wide |>
@@ -320,6 +336,7 @@ avg_wide |>
 ```
 
 ## Question 21
+
 ```{r message=FALSE, warning=FALSE}
 library(dplyr)
 
@@ -336,9 +353,8 @@ correlation_by_group <- avg_wide |>
 correlation_by_group
 ```
 
-
-
 ## Question 22
+
 ```{r message=FALSE, warning=FALSE}
 best_group <- correlation_by_group |>
   mutate(abs_corr = abs(corr)) |>
@@ -379,7 +395,9 @@ final_with_sex |>
   slice_head(n = 5) |>
   kable()
 ```
+
 ## Question 24
+
 ```{r message=FALSE, warning=FALSE}
 library(ggplot2)
 
@@ -389,6 +407,7 @@ final_with_sex |>
 ```
 
 ## Question 25
+
 ```{r message=FALSE, warning=FALSE}
 library(ggplot2)
 
@@ -397,7 +416,9 @@ final_with_sex |>
   geom_boxplot() +
   facet_wrap(~ sex)
 ```
+
 ## Question 26
+
 ```{r message=FALSE, warning=FALSE}
 avg_long <- avg_wide |>
   pivot_longer(
@@ -429,6 +450,7 @@ pass_table |>
   slice_head(n = 5) |>
   knitr::kable()
 ```
+
 ## Question 27
 
 ```{r message=FALSE, warning=FALSE}
@@ -440,6 +462,7 @@ n_fail_high_grade <- pass_table |>
 The number of students who do not pass and yet have a final grade larger or equal to 10 is `r n_fail_high_grade`.
 
 ## Question 28
+
 ```{r message=FALSE, warning=FALSE}
 
 pass_rate_group <- pass_table |>
@@ -450,7 +473,9 @@ pass_rate_group |>
   ggplot(aes(x = group, y = pass_rate)) +
   geom_col()
 ```
+
 ## Question 29
+
 ```{r message=FALSE, warning=FALSE}
 avg_long <- avg_wide |>
   pivot_longer(
@@ -485,5 +510,3 @@ success_by_age |>
   ggplot(aes(x = age, y = success_rate)) +
   geom_col()
 ```
-
-
