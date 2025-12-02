@@ -253,3 +253,11 @@ labs(
     y = "Number of students"
   )
 ```
+
+## Question 17
+```{r message=FALSE, warning=FALSE}
+emc_per_student |>
+  ggplot(aes(x = group, y = nb_grades)) +
+  geom_boxplot() + 
+  labs(x = "Group", y = "Number of grades in EMC")
+```
