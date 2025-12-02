@@ -166,3 +166,15 @@ avg_cna |>
 ```
 
 
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+
+grades_trimester <- grades |>
+  inner_join(courses, by = "course_id")
+
+grades_trimester |>
+  ggplot(aes(x = factor(trimester), y = grade)) +
+  geom_boxplot()
+```
+
