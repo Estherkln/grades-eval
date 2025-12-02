@@ -450,3 +450,21 @@ pass_rate_group |>
   ggplot(aes(x = group, y = pass_rate)) +
   geom_col()
 ```
+## Question 29
+```{r message=FALSE, warning=FALSE}
+avg_long <- avg_wide |>
+  pivot_longer(
+    cols = -c(id, group),
+    names_to = "course",
+    values_to = "avg_grade"
+  )
+
+fail_by_course <- avg_long |>
+  filter(avg_grade < 5) |>
+  group_by(course) |>
+  summarise(n_fail = n()) |>
+  arrange(desc(n_fail))
+
+fail_by_course |>
+  kable()
+```
