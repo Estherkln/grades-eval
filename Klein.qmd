@@ -48,8 +48,25 @@ students |>
   slice_head(n = 5) |>
   kable()
 ```
+
 The `birth_date` column of the students data frame is of class `r birth_date_class`.
 The `sex` column of the students data frame is of class `r sex_class`.
 
+
+## Question 4 
+
+
+```{r message=FALSE, warning=FALSE}
+library(readr)
+
+grades <- read_delim(
+  "grades.csv",
+  delim = "|",
+  na = "$",
+  show_col_types = FALSE
+)
+
+
+```
 
 
