@@ -315,3 +315,19 @@ avg_wide |>
   )
 ```
 
+## Question 21
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+
+correlation_by_group <- avg_wide |>
+  group_by(group) |>
+  summarise(
+    corr = cor(
+      `Swordsmanship and Martial Arts`,
+      `Necromancy and Spirit Summoning`,
+      use = "complete.obs"
+    )
+  )
+
+correlation_by_group
+```
