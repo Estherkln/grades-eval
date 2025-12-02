@@ -468,3 +468,22 @@ fail_by_course <- avg_long |>
 fail_by_course |>
   kable()
 ```
+
+## Question 30
+
+```{r message=FALSE, warning=FALSE}
+
+pass_with_age <- pass_table |>
+  inner_join(select(students, id, birth_date), by = "id") |>
+  mutate(age = round(time_length(today() - birth_date, unit = "year")))
+
+success_by_age <- pass_with_age |>
+  group_by(age) |>
+  summarise(success_rate = mean(pass))
+
+success_by_age |>
+  ggplot(aes(x = age, y = success_rate)) +
+  geom_col()
+```
+
+
