@@ -292,6 +292,8 @@ emc_with_sex |>
   ggplot(aes(x = group, y = nb_grades, color = sex)) +
   geom_boxplot()
 ```
+The number of grades completed in Elemental Mastery and Control does not depend on group, and does not depend on sex. Both factors show almost identical distributions.
+
 
 ## Question 19
 
@@ -335,6 +337,8 @@ avg_wide |>
   )
 ```
 
+There is no strong relationship between performance in History of the Arcane and performance in Swordsmanship and Martial Arts.
+
 ## Question 21
 
 ```{r message=FALSE, warning=FALSE}
@@ -352,6 +356,8 @@ correlation_by_group <- avg_wide |>
 
 correlation_by_group
 ```
+
+The correlation between Swordsmanship and Necromancy grades is weak and negative in almost all groups (execpt 11 and 15).
 
 ## Question 22
 
@@ -375,6 +381,8 @@ best_data |>
     title = paste("Group", best_group)
   )
 ```
+
+The relationship betwee the 2 classes is weak (maybe negative).
 
 ## Question 23
 
@@ -405,6 +413,7 @@ final_with_sex |>
   ggplot(aes(x = group, y = final_grade)) +
   geom_boxplot()
 ```
+Final grades are very similar across all groups. The medians and spreads are nearly identical in all groups. We can conclude that the group does not affect overall performance. But I can see some outliers.
 
 ## Question 25
 
@@ -416,6 +425,8 @@ final_with_sex |>
   geom_boxplot() +
   facet_wrap(~ sex)
 ```
+
+Final grades are similar across all groups even when we seperate students by sex. Neither sex nor group membership has a strong effect on final grades.
 
 ## Question 26
 
@@ -474,6 +485,9 @@ pass_rate_group |>
   geom_col()
 ```
 
+
+Pass rates vary a lot from one group to another. Some groups have very low pass rates (close to 0.03–0.07), while others have much higher rates (0.20–0.34).
+
 ## Question 29
 
 ```{r message=FALSE, warning=FALSE}
@@ -510,3 +524,6 @@ success_by_age |>
   ggplot(aes(x = age, y = success_rate)) +
   geom_col()
 ```
+
+
+The success rate is increasing with age. As a student gets older, his/her success rate is inscreasing as well.
