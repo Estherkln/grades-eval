@@ -70,3 +70,16 @@ grades <- read_delim(
 ```
 
 
+## Question 5
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+
+students |>
+  count(group, name = "nb_students") |>
+  ggplot(aes(x = factor(group), y = nb_students)) +
+  geom_col() +
+  labs(x = "Group", y = "Number of students")
+```
+
