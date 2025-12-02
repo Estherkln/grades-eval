@@ -164,7 +164,7 @@ avg_cna |>
   ggplot(aes(x = group, y = mean_grade)) +
   geom_col()
 ```
-
+##Question 12
 
 ```{r message=FALSE, warning=FALSE}
 library(dplyr)
@@ -207,6 +207,7 @@ Here are the summary statistics for the number of grades per student:
 `r knitr::kable(summary_table)`
 
 ## Question 14
+
 ```{r message=FALSE, warning=FALSE}
 library(ggplot2)
 
@@ -261,6 +262,9 @@ emc_per_student |>
   geom_boxplot() + 
   labs(x = "Group", y = "Number of grades in EMC")
 ```
+
+
+
 ## Question 18 
 
 ```{r message=FALSE, warning=FALSE}
@@ -375,3 +379,56 @@ final_with_sex |>
   slice_head(n = 5) |>
   kable()
 ```
+## Question 24
+```{r message=FALSE, warning=FALSE}
+library(ggplot2)
+
+final_with_sex |>
+  ggplot(aes(x = group, y = final_grade)) +
+  geom_boxplot()
+```
+
+## Question 25
+```{r message=FALSE, warning=FALSE}
+library(ggplot2)
+
+final_with_sex |>
+  ggplot(aes(x = group, y = final_grade)) +
+  geom_boxplot() +
+  facet_wrap(~ sex)
+```
+## Question 26
+```{r message=FALSE, warning=FALSE}
+avg_long <- avg_wide |>
+  pivot_longer(
+    cols = -c(id, group),
+    names_to = "course",
+    values_to = "avg_grade"
+  ) |>
+  inner_join(select(courses, course, trimester), by = "course")
+
+trimester_avg <- avg_long |>
+  group_by(id, trimester) |>
+  summarise(trim_avg = mean(avg_grade), .groups = "drop")
+
+condition1 <- avg_long |>
+  group_by(id) |>
+  summarise(no_course_below_5 = all(avg_grade >= 5))
+
+condition2 <- trimester_avg |>
+  group_by(id) |>
+  summarise(all_trimester_ok = all(trim_avg >= 10))
+
+pass_table <- final_with_sex |>
+  select(id, group, sex, final_grade) |>
+  inner_join(condition1, by = "id") |>
+  inner_join(condition2, by = "id") |>
+  mutate(pass = no_course_below_5 & all_trimester_ok)
+
+pass_table |>
+  slice_head(n = 5) |>
+  knitr::kable()
+```
+
+```
+
