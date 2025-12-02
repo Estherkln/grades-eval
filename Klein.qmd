@@ -302,4 +302,16 @@ avg_wide |>
   kable()
 
 ```
+## Question 20
+```{r message=FALSE, warning=FALSE}
+
+avg_wide |>
+  ggplot(aes(x = `History of the Arcane`,
+             y = `Swordsmanship and Martial Arts`)) +
+  geom_point() +
+  labs(
+    x = "Average grade in History of the Arcane",
+    y = "Average grade in Swordsmanship and Martial Arts"
+  )
+```
 
