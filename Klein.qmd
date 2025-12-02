@@ -438,3 +438,15 @@ n_fail_high_grade <- pass_table |>
 ```
 
 The number of students who do not pass and yet have a final grade larger or equal to 10 is `r n_fail_high_grade`.
+
+## Question 28
+```{r message=FALSE, warning=FALSE}
+
+pass_rate_group <- pass_table |>
+  group_by(group) |>
+  summarise(pass_rate = mean(pass))
+
+pass_rate_group |>
+  ggplot(aes(x = group, y = pass_rate)) +
+  geom_col()
+```
