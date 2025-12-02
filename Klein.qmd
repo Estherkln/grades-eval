@@ -205,3 +205,14 @@ summary_table <- grades_per_student |>
 Here are the summary statistics for the number of grades per student:
 
 `r knitr::kable(summary_table)`
+
+## Question 14
+```{r message=FALSE, warning=FALSE}
+library(ggplot2)
+
+grades_per_student |>
+  ggplot(aes(x = sex, y = nb_grades)) +
+  geom_boxplot()
+```
+
+The distribution of grades seems to be the same for female and male students. 
