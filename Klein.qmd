@@ -83,3 +83,14 @@ students |>
   labs(x = "Group", y = "Number of students")
 ```
 
+## Question 6 
+
+```{r message=FALSE, warning=FALSE}
+
+students |>
+  count(group, sex) |>
+  ggplot(aes(x = group, y = n, fill = sex)) +
+  geom_col()
+```
+
+
